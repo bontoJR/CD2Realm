@@ -1,0 +1,19 @@
+import Foundation
+import RealmSwift
+
+class <%= class_name %>: Object {
+    
+    <% for property in properties %>
+    dynamic var <%= property[:name] %>: <%= property[:type] %> = <%= property[:default_value] %>
+    <% end %>
+
+    <% for relationship in relationships %>
+    <%= relationship %>
+    <% end %>
+
+// Specify properties to ignore (Realm won't persist these)
+    
+//  override static func ignoredProperties() -> [String] {
+//    return []
+//  }
+}
