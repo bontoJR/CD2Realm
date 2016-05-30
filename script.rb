@@ -54,9 +54,14 @@ File.open(ARGV[0]) do |f|
             default_value = 'nil'
 
             if attribute['optional'] == 'YES'
-                attribute_type << '?'
                 if attribute['defaultValueString'] != nil
                     default_value = attribute['defaultValueString']
+                elsif attribute_type == 'Int16' || attribute_type == 'Int32' || attribute_type == 'Int64'
+                    default_value = '0' 
+                elsif attribute_type == 'Bool'
+                    default_value = 'false'
+                else
+                    attribute_type << '?'
                 end
             end
 
